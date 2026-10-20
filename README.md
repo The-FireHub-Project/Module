@@ -22,6 +22,10 @@
   /></a>
 </h1>
 
+[![PHPStan](https://github.com/The-FireHub-Project/Module/actions/workflows/PHPStan.yml/badge.svg?branch=develop)](https://github.com/The-FireHub-Project/Module/actions/workflows/PHPStan.yml)
+[![PHPUnit](https://github.com/The-FireHub-Project/Module/actions/workflows/PHPUnit.yml/badge.svg?branch=develop)](https://github.com/The-FireHub-Project/Module/actions/workflows/PHPUnit.yml)
+[![Codecov](https://codecov.io/gh/The-FireHub-Project/Module/branch/develop/graph/badge.svg?token=XW2YEONF51)](https://app.codecov.io/gh/The-FireHub-Project/Module/tree/develop)
+
 <p>
   <a href="https://github.com/The-FireHub-Project/Module">
     <img
@@ -65,84 +69,55 @@
   /></a>
 </p>
 
-FireHub Module provides modular application composition and lifecycle integration for The FireHub Project. It enables applications to organize related functionality into cohesive, reusable modules while maintaining clear architectural boundaries and separation of concerns.
+Provides the dependency injection and service management foundation of the FireHub ecosystem. This repository contains the runtime components responsible for service registration, dependency resolution, instance creation, and service lifetime management, enabling consistent and loosely coupled application architectures.
 
-Built around the contracts defined by FireHub Core, FireHub Module provides the mechanisms for module registration, dependency coordination, initialization ordering, and integration with the application lifecycle. Modules can contribute services, configuration, and lifecycle behavior without introducing independent application runtimes.
+FireHub Module is built around the contracts defined by FireHub Core and provides a modular implementation of the Inversion of Control principle. It separates service definitions from their runtime resolution, allowing applications and framework components to declare dependencies without managing their construction directly.
 
-FireHub Module serves as an application composition and orchestration component within the FireHub ecosystem. It supports Clean Architecture and Domain-Driven Design by enabling applications to assemble independent functional units while preserving centralized lifecycle management through FireHub Application and execution infrastructure through FireHub Kernel.
+This repository serves as a foundational runtime component for FireHub applications, adapters, and capabilities, supporting clean architecture, testability, extensibility, and predictable dependency management.
 
 ---
 
-## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Repository Purpose
+## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Development Branch
 
-FireHub Module is the modular application composition and orchestration component of the FireHub ecosystem.
+⚠️ **This is the `develop` branch**
 
-Built on the contracts provided by FireHub Core, it supplies the mechanisms required to organize, register, coordinate, and integrate functional modules within FireHub applications.
+- Unstable
+- APIs may change without notice
+- Not intended for production use
 
-The purpose of this repository is to provide a consistent modular architecture while preserving separation of concerns between application composition, dependency management, and runtime execution.
+## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Branch Purpose
 
-The Module architecture is designed to support:
+The `develop` branch is the **primary integration branch** for all ongoing development.
 
-* Modular organization of application functionality
-* Registration and management of application modules
-* Module dependency declaration and resolution
-* Dependency ordering and circular dependency detection
-* Integration with application initialization and disposal
-* Module-specific service registration and configuration
-* Shared application dependency injection infrastructure
-* Reusable and independently developed functional modules
-* Predictable module initialization and disposal ordering
-* Compatibility with Clean Architecture and Domain-Driven Design
+It serves as the staging area where:
+- Feature branches are merged
+- Bug fixes are integrated
+- Experimental work is stabilized
+- Code is prepared for upcoming releases
 
-FireHub Module follows the architectural principles of The FireHub Project by separating responsibilities between module composition, application lifecycle orchestration, dependency injection, and runtime execution.
+All **release branches** are created **from `develop`**.
 
-Modules do not own independent application kernels or lifecycle state machines. Instead, they participate in the lifecycle of their hosting application through well-defined initialization and disposal mechanisms.
+## Stability Guarantee
 
-The Module component does not control application execution, dependency injection scopes, or kernel lifecycle transitions. These responsibilities remain with FireHub Application, FireHub Container, and FireHub Kernel.
+❌ No backward compatibility guarantee  
+❌ APIs may change without notice  
+❌ Behavior may be incomplete or inconsistent  
+❌ Breaking changes are expected
 
-This separation enables applications to organize functionality into modular units without introducing unnecessary runtime complexity or coupling between modules and execution infrastructure.
+This branch is intended **only for contributors and advanced testers**.
 
-## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Security
+## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Composer Usage (Not Recommended)
 
-For security reporting and guidelines, please refer to our [SECURITY.md](https://github.com/The-FireHub-Project/.github/blob/master/.github/SECURITY.md) file.
+For internal testing only:
 
-## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Community
-
-![GitHub watchers](https://img.shields.io/github/watchers/The-FireHub-Project/Module?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/The-FireHub-Project/Module?style=social)
-![GitHub forks](https://img.shields.io/github/forks/The-FireHub-Project/Module?style=social)
-
-- Be sure to review the [Code of Conduct](https://github.com/The-FireHub-Project/.github/blob/master/.github/CODE_OF_CONDUCT.md).
-- Read a [Contributing](https://github.com/The-FireHub-Project/.github/blob/master/.github/CONTRIBUTING.md) file to see how you can contribute to this project.
-- Read our [Security policy](https://github.com/The-FireHub-Project/.github/blob/master/.github/SECURITY.md) file to see how you can report a vulnerability.
-- Review the project [Governance model](https://github.com/The-FireHub-Project/.github/blob/master/.github/GOVERNANCE.md), including roles, decision-making, RFC process, and releases.
-
-## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Support
-
-<p>
-  <a href="https://github.com/The-FireHub-Project/Module/issues?q=is%3Aissue%20state%3Aopen">
-    <img
-      src="https://img.shields.io/github/issues/The-FireHub-Project/Module?style=flat&logo=github&logoColor=959da5&label=in%20progress%20issues&labelColor=31373e"
-      alt="GitHub in-progress issues"
-  /></a>
-  <a href="https://github.com/The-FireHub-Project/Module/issues?q=is%3Aissue">
-    <img
-      src="https://img.shields.io/github/issues-search?query=repo%3AThe-FireHub-Project%Modulo&style=flat&logo=github&logoColor=959da5&label=total%20issues&labelColor=31373e"
-      alt="GitHub total issues"
-  /></a>
-  <a href="https://github.com/The-FireHub-Project/Module/issues?q=is%3Apr%20is%3Aopen">
-    <img
-      src="https://img.shields.io/github/issues-pr/The-FireHub-Project/Module?style=flat&logo=github&logoColor=959da5&labelColor=31373e"
-      alt="GitHub opened pull requests"
-  /></a>
-</p>
-
-For help with FireHub products, please refer to the following resources:
-
-- **General questions & discussions**: [GitHub Discussions](https://github.com/orgs/The-FireHub-Project/discussions)
-- **Bug reports & issues**: [Support](https://github.com/The-FireHub-Project/Module/issues)
-- **Documentation & guides**: [FireHub Docs](https://the-firehub-project.github.io)
-- **Commercial support** (Pro/Enterprise): contact your account manager
+```json
+{
+  "require": {
+    "the-firehub-project/module": "dev-develop"
+  }
+}
+```
+⚠️ Never use dev-develop in production.
 
 ## <img src="https://raw.githubusercontent.com/The-FireHub-Project/the-firehub-project.github.io/master/resources/graphics/icons/firehub.svg" width="15" alt="FireHub Icon"> Authors and Contributors
 
