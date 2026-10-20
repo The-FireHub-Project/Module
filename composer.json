@@ -3,7 +3,7 @@
   "description": "Modular application composition and lifecycle integration for The FireHub Project.",
   "type": "library",
   "keywords": ["php", "framework", "firehub", "application-modules", "modular-architecture", "module-system"],
-  "homepage": "https://the-firehub-project.github.io/kernel",
+  "homepage": "https://the-firehub-project.github.io/module",
   "license": "Apache-2.0",
   "require": {
     "php": "^8.5",
