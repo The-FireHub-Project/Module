@@ -14,7 +14,10 @@
 namespace FireHub\Module;
 
 use FireHub\Core\Boundary\Module;
-use FireHub\Core\Boundary\Module\Dependencies;
+use FireHub\Core\Boundary\Module\ {
+    Dependencies, RegistersServices
+};
+use FireHub\Core\Boundary\Container\Registrar;
 use FireHub\Module\Exception\ {
     CircularModuleDependencyException, ModuleAlreadyRegisteredException, ModuleDependencyNotFoundException,
     ModuleNotFoundException
@@ -135,6 +138,39 @@ final class Manager {
             $this->visit($module, $states, $ordered);
 
         return $ordered;
+
+    }
+
+    /**
+     * ### Registers services provided by modules
+     *
+     * Invokes service registration for all registered modules in dependency order.
+     *
+     * Modules that do not implement the registration capability are skipped.
+     *
+     * Service registration must occur before the container is frozen.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Module\Manager::ordered() Gets modules in dependency order.
+     * @uses \FireHub\Core\Boundary\Module\RegistersServices::register() To register services.
+     *
+     * @param \FireHub\Core\Boundary\Container\Registrar $registrar <p>
+     * Service registrar.
+     * </p>
+     *
+     * @throws \FireHub\Module\Exception\ModuleDependencyNotFoundException If a required module is not registered.
+     * @throws \FireHub\Module\Exception\CircularModuleDependencyException If circular dependencies are detected.
+     *
+     * @return void
+     */
+    public function registerServices (Registrar $registrar):void {
+
+        foreach ($this->ordered() as $module) {
+
+            if ($module instanceof RegistersServices)
+                $module->register($registrar);
+
+        }
 
     }
 
