@@ -20,7 +20,7 @@ use FireHub\Core\Boundary\Module\ {
 use FireHub\Core\Boundary\Container\Registrar;
 use FireHub\Module\Exception\ {
     CircularModuleDependencyException, ModuleAlreadyRegisteredException, ModuleDependencyNotFoundException,
-    ModuleNotFoundException
+    ModuleManagerFrozenException, ModuleNotFoundException
 };
 
 /**
@@ -39,6 +39,12 @@ final class Manager {
     private array $modules = [];
 
     /**
+     * ### Module registry freeze state
+     * @since 1.0.0
+     */
+    private bool $frozen = false;
+
+    /**
      * ### Registers a module
      * @since 1.0.0
      *
@@ -47,10 +53,14 @@ final class Manager {
      * </p>
      *
      * @throws \FireHub\Module\Exception\ModuleAlreadyRegisteredException If the module is already registered.
+     * @throws \FireHub\Module\Exception\ModuleManagerFrozenException If the manager is frozen.
      *
      * @return self The manager instance.
      */
     public function register (Module $module):self {
+
+        if ($this->frozen)
+            throw new ModuleManagerFrozenException;
 
         $class = $module::class;
 
@@ -60,6 +70,7 @@ final class Manager {
         $this->modules[$class] = $module;
 
         return $this;
+
 
     }
 
@@ -171,6 +182,20 @@ final class Manager {
                 $module->register($registrar);
 
         }
+
+    }
+
+    /**
+     * ### Freezes the module registry
+     *
+     * Prevents further module registration while preserving access to previously registered modules.
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function freeze ():void {
+
+        $this->frozen = true;
 
     }
 
