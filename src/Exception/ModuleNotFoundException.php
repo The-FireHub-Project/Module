@@ -21,6 +21,11 @@ use FireHub\Core\Exception\Runtime\OutOfBoundsException;
  */
 final class ModuleNotFoundException extends OutOfBoundsException {
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
     protected const string DEFAULT_MESSAGE = 'The module identifier was not found';
 
 }

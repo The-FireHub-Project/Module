@@ -23,6 +23,11 @@ use FireHub\Core\Exception\RuntimeException;
  */
 final class ModuleDependencyNotFoundException extends RuntimeException {
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
     protected const string DEFAULT_MESSAGE = 'The module dependency was not found';
 
 }

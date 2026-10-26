@@ -186,6 +186,27 @@ final class Manager {
     }
 
     /**
+     * ### Checks whether modules provide service registrations
+     *
+     * Determines whether at least one registered module supports dependency injection service registration.
+     * @since 1.0.0
+     *
+     * @return bool True if service registration is required.
+     */
+    public function hasServiceRegistrations ():bool {
+
+        foreach ($this->modules as $module) {
+
+            if ($module instanceof RegistersServices)
+                return true;
+
+        }
+
+        return false;
+
+    }
+
+    /**
      * ### Freezes the module registry
      *
      * Prevents further module registration while preserving access to previously registered modules.
